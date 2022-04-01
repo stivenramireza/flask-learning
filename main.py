@@ -42,11 +42,3 @@ def not_found(error: object) -> object:
 @app.errorhandler(500)
 def internal_server_error(error: object) -> object:
     return render_template("500.jinja", error=error)
-
-
-def main() -> None:
-    app.run(port=5000, debug=True)
-
-
-if __name__ == "__main__":
-    main()
