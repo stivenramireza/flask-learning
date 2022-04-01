@@ -1,6 +1,6 @@
 # Flask Learning
 
-Building strong foundations in Flask web framework.
+Building strong foundations and learning Jinja2 templates and extensions like Flask-Bootstrap, Flask-WTF and Flask-Testing.
 
 <p align="center">
 <img src="https://sourcedexter.com/wp-content/uploads/2017/09/flask-python.png">
