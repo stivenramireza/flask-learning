@@ -10,5 +10,19 @@
     {% block navbar %}
         {% include "navbar.jinja" %}
     {% endblock %}
+
+    {% for message in get_flashed_messages() %}
+        <div class="container">
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" data-dismiss="alert" class="close">&times;</button>
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+
     {% block content %}{% endblock %}
+
+    {% block scripts %}
+        {{ super() }}
+    {% endblock %}
 {% endblock %}
