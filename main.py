@@ -1,7 +1,6 @@
 import unittest
 
 from flask import (
-    Flask,
     request,
     make_response,
     redirect,
@@ -10,15 +9,13 @@ from flask import (
     url_for,
     flash,
 )
-from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
 
-app = Flask(__name__)
-bootstrap = Bootstrap(app)
+from src.app import create_app
 
-app.config["SECRET_KEY"] = "SUPER SECRET"
+app = create_app()
 
 todos = ["Buy coffee", "Send a sell solicitude", "Deliver video of the product"]
 
@@ -58,17 +55,17 @@ def hello() -> object:
 
         return redirect(url_for("index"))
 
-    return render_template("hello.jinja", **context)
+    return render_template("hello.html", **context)
 
 
 @app.errorhandler(404)
 def not_found(error: object) -> object:
-    return render_template("404.jinja", error=error)
+    return render_template("404.html", error=error)
 
 
 @app.errorhandler(500)
 def internal_server_error(error: object) -> object:
-    return render_template("500.jinja", error=error)
+    return render_template("500.html", error=error)
 
 
 @app.cli.command()
