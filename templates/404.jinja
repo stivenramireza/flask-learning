@@ -1,0 +1,12 @@
+{% extends "base.jinja" %}
+
+{% block title %}
+    {{ super() }}
+    404
+{% endblock %}
+
+
+{% block content %}
+    <h1>Sorry, but we did not found that you searched </h1>
+    <p>{{ error }}</p>
+{% endblock %}
