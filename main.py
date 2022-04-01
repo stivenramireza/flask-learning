@@ -1,29 +1,12 @@
 import unittest
 
-from flask import (
-    request,
-    make_response,
-    redirect,
-    render_template,
-    session,
-    url_for,
-    flash,
-)
-from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
+from flask import request, make_response, redirect, render_template, session
 
 from src.app import create_app
 
 app = create_app()
 
 todos = ["Buy coffee", "Send a sell solicitude", "Deliver video of the product"]
-
-
-class LoginForm(FlaskForm):
-    username = StringField("Username", validators=[DataRequired()])
-    password = PasswordField("Password", validators=[DataRequired()])
-    submit = SubmitField("Send")
 
 
 @app.route("/")
@@ -34,26 +17,16 @@ def index() -> object:
     return response
 
 
-@app.route("/hello", methods=["GET", "POST"])
+@app.route("/hello")
 def hello() -> object:
     user_ip = session.get("user_ip")
-    login_form = LoginForm()
     username = session.get("username")
 
     context = {
         "user_ip": user_ip,
         "todos": todos,
-        "login_form": login_form,
         "username": username,
     }
-
-    if login_form.validate_on_submit():
-        username = login_form.username.data
-        session["username"] = username
-
-        flash("Username registered successfully")
-
-        return redirect(url_for("index"))
 
     return render_template("hello.html", **context)
 
