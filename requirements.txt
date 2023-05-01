@@ -1,4 +1,4 @@
-flask==2.1.1
+flask==2.3.2
 flask-bootstrap==3.3.7.1
 flask-wtf==1.0.1
 flask-testing==0.8.1
